@@ -39,7 +39,7 @@ function! slumlord#updatePreview(args) abort
     call s:mungeDiagramInTmpFile(tmpfname)
     let b:slumlord_preview_fname = fnamemodify(tmpfname,  ':r') . '.' . ext
 
-    let cmd = "java -Dapple.awt.UIElement=true -Dplantuml.include.path=\"". g:slumlord_plantuml_include_path ."\" -splash: -jar ". g:slumlord_plantuml_jar_path ." -charset ". charset ." -t" . type ." ". tmpfname
+    let cmd = "java -Djava.awt.headless=true -Dapple.awt.UIElement=true -Dplantuml.include.path=\"". g:slumlord_plantuml_include_path ."\" -splash: -jar ". g:slumlord_plantuml_jar_path ." -charset ". charset ." -t" . type ." ". tmpfname
 
     let write = has_key(a:args, 'write') && a:args["write"] == 1
     if exists("*jobstart")
